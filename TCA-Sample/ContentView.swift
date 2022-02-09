@@ -8,31 +8,6 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct Todo: Equatable, Identifiable {
-  var description = ""
-  let id: UUID
-  var isComplete = false
-}
-
-enum TodoAction {
-  case checkboxTapped
-  case textFieldChanged(String)
-}
-
-struct TodoEnvironment {
-}
-
-let todoReducer = Reducer<Todo, TodoAction, TodoEnvironment> { state, action, environment in
-  switch action {
-  case .checkboxTapped:
-    state.isComplete.toggle()
-    return .none
-  case .textFieldChanged(let text):
-    state.description = text
-    return .none
-  }
-}
-
 struct AppState: Equatable {
   var todos: [Todo] = []
 }
@@ -73,27 +48,10 @@ struct ContentView: View {
       WithViewStore(self.store) { viewStore in
         List {
 //          zip(viewStore.todos.indices, viewStore.todos)
-          
           ForEachStore(
             self.store.scope(state: \.todos, action: AppAction.todo(index:action:))
           ) { todoStore in
-            WithViewStore(todoStore) { todoViewStore in
-              HStack {
-                Button(action: { todoViewStore.send(.checkboxTapped) }) {
-                  Image(systemName: todoViewStore.isComplete ? "checkmark.square": "square")
-                }
-                .buttonStyle(PlainButtonStyle())
-                
-                TextField(
-                  "untitled todo",
-                  text: todoViewStore.binding(
-                    get: \.description,
-                    send: TodoAction.textFieldChanged
-                  )
-                )
-              }
-              .foregroundColor(todoViewStore.isComplete ? .gray : nil)
-            }
+            TodoView(store: todoStore)
           }
           
         }
