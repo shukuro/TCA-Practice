@@ -16,7 +16,9 @@ struct TCA_SampleApp: App {
                 store: Store(
                     initialState: AppState(),
                     reducer: appReducer,
-                    environment: AppEnvironment()
+                    environment: AppEnvironment(
+                      mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                      uuid: UUID.init)
                 )
             )
         }
