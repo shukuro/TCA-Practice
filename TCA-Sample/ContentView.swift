@@ -15,7 +15,7 @@ struct AppState: Equatable {
 enum AppAction {
   case addButtonTapped
   case todo(index: Int, action: TodoAction)
-  case todo DelayCompleted
+  case todoDelayCompleted
 }
 
 struct AppEnvironment {
