@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A289D43B27D65FFE006F5AD1 /* Error+Equality.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D43627D65FFE006F5AD1 /* Error+Equality.swift */; };
+		A289D43C27D65FFE006F5AD1 /* Provider+CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D43727D65FFE006F5AD1 /* Provider+CheckList.swift */; };
+		A289D43D27D65FFE006F5AD1 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D43827D65FFE006F5AD1 /* Provider.swift */; };
+		A289D43E27D65FFE006F5AD1 /* Provider+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D43927D65FFE006F5AD1 /* Provider+User.swift */; };
+		A289D43F27D65FFE006F5AD1 /* ProviderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D43A27D65FFE006F5AD1 /* ProviderError.swift */; };
+		A289D44827D66026006F5AD1 /* CheckDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D44127D66026006F5AD1 /* CheckDetailView.swift */; };
+		A289D44927D66026006F5AD1 /* CheckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D44227D66026006F5AD1 /* CheckListView.swift */; };
+		A289D44A27D66026006F5AD1 /* CheckRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D44327D66026006F5AD1 /* CheckRowView.swift */; };
+		A289D44B27D66026006F5AD1 /* CheckListClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D44427D66026006F5AD1 /* CheckListClient.swift */; };
+		A289D44C27D66026006F5AD1 /* UserClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D44627D66026006F5AD1 /* UserClient.swift */; };
+		A289D44D27D66026006F5AD1 /* TCASampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D44727D66026006F5AD1 /* TCASampleView.swift */; };
+		A289D44F27D660C5006F5AD1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D44E27D660C5006F5AD1 /* User.swift */; };
+		A2D31B2127D65CEE000CA792 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D31B2027D65CEE000CA792 /* TodoListView.swift */; };
 		A2D6865327B2D74200EB3F3E /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6865227B2D74200EB3F3E /* TodoView.swift */; };
 		A2E0822927AEEEF200B0DCAC /* TCA_SampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E0822827AEEEF200B0DCAC /* TCA_SampleApp.swift */; };
 		A2E0822B27AEEEF200B0DCAC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E0822A27AEEEF200B0DCAC /* ContentView.swift */; };
@@ -16,6 +29,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A289D43627D65FFE006F5AD1 /* Error+Equality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Error+Equality.swift"; sourceTree = "<group>"; };
+		A289D43727D65FFE006F5AD1 /* Provider+CheckList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Provider+CheckList.swift"; sourceTree = "<group>"; };
+		A289D43827D65FFE006F5AD1 /* Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		A289D43927D65FFE006F5AD1 /* Provider+User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Provider+User.swift"; sourceTree = "<group>"; };
+		A289D43A27D65FFE006F5AD1 /* ProviderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderError.swift; sourceTree = "<group>"; };
+		A289D44127D66026006F5AD1 /* CheckDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckDetailView.swift; sourceTree = "<group>"; };
+		A289D44227D66026006F5AD1 /* CheckListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListView.swift; sourceTree = "<group>"; };
+		A289D44327D66026006F5AD1 /* CheckRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckRowView.swift; sourceTree = "<group>"; };
+		A289D44427D66026006F5AD1 /* CheckListClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListClient.swift; sourceTree = "<group>"; };
+		A289D44627D66026006F5AD1 /* UserClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserClient.swift; sourceTree = "<group>"; };
+		A289D44727D66026006F5AD1 /* TCASampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCASampleView.swift; sourceTree = "<group>"; };
+		A289D44E27D660C5006F5AD1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A2D31B2027D65CEE000CA792 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		A2D6865227B2D74200EB3F3E /* TodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
 		A2E0822527AEEEF200B0DCAC /* TCA-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCA-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2E0822827AEEEF200B0DCAC /* TCA_SampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCA_SampleApp.swift; sourceTree = "<group>"; };
@@ -36,6 +62,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A289D43427D65EBC006F5AD1 /* Todos */ = {
+			isa = PBXGroup;
+			children = (
+				A2D31B2027D65CEE000CA792 /* TodoListView.swift */,
+				A2D6865227B2D74200EB3F3E /* TodoView.swift */,
+			);
+			path = Todos;
+			sourceTree = "<group>";
+		};
+		A289D43527D65FFE006F5AD1 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				A289D43627D65FFE006F5AD1 /* Error+Equality.swift */,
+				A289D43727D65FFE006F5AD1 /* Provider+CheckList.swift */,
+				A289D43827D65FFE006F5AD1 /* Provider.swift */,
+				A289D43927D65FFE006F5AD1 /* Provider+User.swift */,
+				A289D43A27D65FFE006F5AD1 /* ProviderError.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		A289D44027D66026006F5AD1 /* TCASample */ = {
+			isa = PBXGroup;
+			children = (
+				A289D44227D66026006F5AD1 /* CheckListView.swift */,
+				A289D44327D66026006F5AD1 /* CheckRowView.swift */,
+				A289D44127D66026006F5AD1 /* CheckDetailView.swift */,
+				A289D44427D66026006F5AD1 /* CheckListClient.swift */,
+			);
+			path = TCASample;
+			sourceTree = "<group>";
+		};
+		A289D44527D66026006F5AD1 /* TCAAPI */ = {
+			isa = PBXGroup;
+			children = (
+				A289D44727D66026006F5AD1 /* TCASampleView.swift */,
+				A289D44E27D660C5006F5AD1 /* User.swift */,
+				A289D44627D66026006F5AD1 /* UserClient.swift */,
+			);
+			path = TCAAPI;
+			sourceTree = "<group>";
+		};
 		A2E0821C27AEEEF200B0DCAC = {
 			isa = PBXGroup;
 			children = (
@@ -57,7 +125,10 @@
 			children = (
 				A2E0822827AEEEF200B0DCAC /* TCA_SampleApp.swift */,
 				A2E0822A27AEEEF200B0DCAC /* ContentView.swift */,
-				A2D6865227B2D74200EB3F3E /* TodoView.swift */,
+				A289D43427D65EBC006F5AD1 /* Todos */,
+				A289D44527D66026006F5AD1 /* TCAAPI */,
+				A289D44027D66026006F5AD1 /* TCASample */,
+				A289D43527D65FFE006F5AD1 /* Provider */,
 				A2E0822C27AEEEF200B0DCAC /* Assets.xcassets */,
 				A2E0822E27AEEEF300B0DCAC /* Preview Content */,
 			);
@@ -149,8 +220,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D6865327B2D74200EB3F3E /* TodoView.swift in Sources */,
+				A289D44B27D66026006F5AD1 /* CheckListClient.swift in Sources */,
+				A289D43B27D65FFE006F5AD1 /* Error+Equality.swift in Sources */,
+				A289D44827D66026006F5AD1 /* CheckDetailView.swift in Sources */,
+				A289D44F27D660C5006F5AD1 /* User.swift in Sources */,
+				A289D43D27D65FFE006F5AD1 /* Provider.swift in Sources */,
+				A289D44927D66026006F5AD1 /* CheckListView.swift in Sources */,
+				A289D43F27D65FFE006F5AD1 /* ProviderError.swift in Sources */,
+				A289D43E27D65FFE006F5AD1 /* Provider+User.swift in Sources */,
 				A2E0822B27AEEEF200B0DCAC /* ContentView.swift in Sources */,
+				A2D31B2127D65CEE000CA792 /* TodoListView.swift in Sources */,
 				A2E0822927AEEEF200B0DCAC /* TCA_SampleApp.swift in Sources */,
+				A289D44D27D66026006F5AD1 /* TCASampleView.swift in Sources */,
+				A289D44C27D66026006F5AD1 /* UserClient.swift in Sources */,
+				A289D44A27D66026006F5AD1 /* CheckRowView.swift in Sources */,
+				A289D43C27D65FFE006F5AD1 /* Provider+CheckList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

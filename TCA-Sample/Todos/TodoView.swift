@@ -9,8 +9,8 @@ import SwiftUI
 import ComposableArchitecture
 
 struct Todo: Equatable, Identifiable {
-  var description = ""
   let id: UUID
+  var description = ""
   var isComplete = false
 }
 
@@ -62,8 +62,8 @@ struct TodoView_Previews: PreviewProvider {
         TodoView(
           store: Store(
             initialState: Todo(
-              description: "aaa",
               id: UUID(),
+              description: "aaa",
               isComplete: false),
             reducer: todoReducer,
             environment: TodoEnvironment()
