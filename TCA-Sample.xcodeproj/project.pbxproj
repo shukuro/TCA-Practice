@@ -26,6 +26,10 @@
 		A2E0822D27AEEEF300B0DCAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2E0822C27AEEEF200B0DCAC /* Assets.xcassets */; };
 		A2E0823027AEEEF300B0DCAC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2E0822F27AEEEF300B0DCAC /* Preview Assets.xcassets */; };
 		A2E0823827AEEF9E00B0DCAC /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A2E0823727AEEF9E00B0DCAC /* ComposableArchitecture */; };
+		A2FE634B27DE03CC006D02B1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A2FE634A27DE03CC006D02B1 /* Realm */; };
+		A2FE634D27DE03CC006D02B1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A2FE634C27DE03CC006D02B1 /* RealmSwift */; };
+		A2FE634F27DE478A006D02B1 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE634E27DE478A006D02B1 /* Task.swift */; };
+		A2FE635327DE4902006D02B1 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE635227DE4902006D02B1 /* RealmManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,8 @@
 		A2E0822A27AEEEF200B0DCAC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A2E0822C27AEEEF200B0DCAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2E0822F27AEEEF300B0DCAC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A2FE634E27DE478A006D02B1 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		A2FE635227DE4902006D02B1 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,7 @@
 				A289D43427D65EBC006F5AD1 /* Todos */,
 				A289D44527D66026006F5AD1 /* TCAAPI */,
 				A289D44027D66026006F5AD1 /* TCASample */,
+				A2FE634627DE0121006D02B1 /* TodoWithRealm */,
 				A289D43527D65FFE006F5AD1 /* Provider */,
 				A2E0822C27AEEEF200B0DCAC /* Assets.xcassets */,
 				A2E0822E27AEEEF300B0DCAC /* Preview Content */,
@@ -143,6 +150,15 @@
 				A2E0822F27AEEEF300B0DCAC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A2FE634627DE0121006D02B1 /* TodoWithRealm */ = {
+			isa = PBXGroup;
+			children = (
+				A2FE634E27DE478A006D02B1 /* Task.swift */,
+				A2FE635227DE4902006D02B1 /* RealmManager.swift */,
+			);
+			path = TodoWithRealm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +255,8 @@
 				A289D44D27D66026006F5AD1 /* TCASampleView.swift in Sources */,
 				A289D44C27D66026006F5AD1 /* UserClient.swift in Sources */,
 				A289D44A27D66026006F5AD1 /* CheckRowView.swift in Sources */,
+				A2FE635327DE4902006D02B1 /* RealmManager.swift in Sources */,
+				A2FE634F27DE478A006D02B1 /* Task.swift in Sources */,
 				A289D43C27D65FFE006F5AD1 /* Provider+CheckList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
