@@ -52,6 +52,20 @@ struct ContentView: View {
               )
           )
         }
+        
+        NavigationLink("Todo with Realm") {
+          TasksView(
+            store:
+              Store(
+                initialState: Tasks(),
+                reducer: tasksReducer,
+                environment: TasksEnvironment(
+                  realmManager: RealmManager(),
+                  mainQueue: .main
+                )
+              )
+          )
+        }
       }
     }
   }

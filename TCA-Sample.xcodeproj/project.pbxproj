@@ -26,10 +26,14 @@
 		A2E0822D27AEEEF300B0DCAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2E0822C27AEEEF200B0DCAC /* Assets.xcassets */; };
 		A2E0823027AEEEF300B0DCAC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2E0822F27AEEEF300B0DCAC /* Preview Assets.xcassets */; };
 		A2E0823827AEEF9E00B0DCAC /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A2E0823727AEEF9E00B0DCAC /* ComposableArchitecture */; };
+		A2FE634827DE0159006D02B1 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE634727DE0159006D02B1 /* TasksView.swift */; };
 		A2FE634B27DE03CC006D02B1 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A2FE634A27DE03CC006D02B1 /* Realm */; };
 		A2FE634D27DE03CC006D02B1 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A2FE634C27DE03CC006D02B1 /* RealmSwift */; };
 		A2FE634F27DE478A006D02B1 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE634E27DE478A006D02B1 /* Task.swift */; };
+		A2FE635127DE4858006D02B1 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE635027DE4858006D02B1 /* AddTaskView.swift */; };
 		A2FE635327DE4902006D02B1 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE635227DE4902006D02B1 /* RealmManager.swift */; };
+		A2FE635527DE4995006D02B1 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE635427DE4995006D02B1 /* TaskRow.swift */; };
+		A2FE635727DE49B5006D02B1 /* SmallAddAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE635627DE49B5006D02B1 /* SmallAddAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,8 +56,12 @@
 		A2E0822A27AEEEF200B0DCAC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A2E0822C27AEEEF200B0DCAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2E0822F27AEEEF300B0DCAC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A2FE634727DE0159006D02B1 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		A2FE634E27DE478A006D02B1 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		A2FE635027DE4858006D02B1 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 		A2FE635227DE4902006D02B1 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		A2FE635427DE4995006D02B1 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
+		A2FE635627DE49B5006D02B1 /* SmallAddAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallAddAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,8 +163,12 @@
 		A2FE634627DE0121006D02B1 /* TodoWithRealm */ = {
 			isa = PBXGroup;
 			children = (
+				A2FE634727DE0159006D02B1 /* TasksView.swift */,
+				A2FE635027DE4858006D02B1 /* AddTaskView.swift */,
 				A2FE634E27DE478A006D02B1 /* Task.swift */,
 				A2FE635227DE4902006D02B1 /* RealmManager.swift */,
+				A2FE635427DE4995006D02B1 /* TaskRow.swift */,
+				A2FE635627DE49B5006D02B1 /* SmallAddAction.swift */,
 			);
 			path = TodoWithRealm;
 			sourceTree = "<group>";
@@ -244,12 +256,16 @@
 				A289D44B27D66026006F5AD1 /* CheckListClient.swift in Sources */,
 				A289D43B27D65FFE006F5AD1 /* Error+Equality.swift in Sources */,
 				A289D44827D66026006F5AD1 /* CheckDetailView.swift in Sources */,
+				A2FE635127DE4858006D02B1 /* AddTaskView.swift in Sources */,
 				A289D44F27D660C5006F5AD1 /* User.swift in Sources */,
 				A289D43D27D65FFE006F5AD1 /* Provider.swift in Sources */,
+				A2FE635727DE49B5006D02B1 /* SmallAddAction.swift in Sources */,
 				A289D44927D66026006F5AD1 /* CheckListView.swift in Sources */,
+				A2FE634827DE0159006D02B1 /* TasksView.swift in Sources */,
 				A289D43F27D65FFE006F5AD1 /* ProviderError.swift in Sources */,
 				A289D43E27D65FFE006F5AD1 /* Provider+User.swift in Sources */,
 				A2E0822B27AEEEF200B0DCAC /* ContentView.swift in Sources */,
+				A2FE635527DE4995006D02B1 /* TaskRow.swift in Sources */,
 				A2D31B2127D65CEE000CA792 /* TodoListView.swift in Sources */,
 				A2E0822927AEEEF200B0DCAC /* TCA_SampleApp.swift in Sources */,
 				A289D44D27D66026006F5AD1 /* TCASampleView.swift in Sources */,

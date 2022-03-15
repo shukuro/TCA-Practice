@@ -40,11 +40,6 @@ let checkListReducer = Reducer<CheckListState, CheckListAction, CheckListEnviron
         .receive(on: environment.mainQueue)
         .catchToEffect(CheckListAction.fetchCheckResponse)
       
-      return Effect(value: .updateCountButton)
-      
-//    case .check(index: _, action: .checkboxTapped):
-//      return .none
-
     case .check(index: let index, action: let action):
       return Effect(value: .updateCountButton)
       
