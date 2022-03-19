@@ -53,15 +53,11 @@ let tasksReducer = Reducer<Tasks, TasksAction, TasksEnvironment> { state, action
 struct TasksView: View {
 //  @EnvironmentObject var realmManager: RealmManager
   let store: Store<Tasks, TasksAction>
+  @State private var showAddTaskView = false
   
   var body: some View {
     WithViewStore(self.store) { viewStore in
-      VStack {
-        Text("My taks")
-          .font(.title3).bold()
-          .padding()
-          .frame(maxWidth: .infinity, alignment: .leading)
-        
+      ZStack(alignment: .bottomTrailing) {
         List {
           ForEach(viewStore.tasks, id: \.id) { task in
             if !task.isInvalidated {
@@ -93,12 +89,31 @@ struct TasksView: View {
           UITableView.appearance().backgroundColor = UIColor.clear
           UITableViewCell.appearance().backgroundColor = UIColor.clear
         }
+        
+        SmallAddButton()
+          .padding()
+          .onTapGesture {
+            showAddTaskView.toggle()
+          }
+        
       }
-      .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .sheet(isPresented: $showAddTaskView) {
+        AddTaskView(
+          store: Store(
+            initialState: AddTaskState(),
+            reducer: addTaskReducer,
+            environment: AddTaskEnvironment(
+              realmManager: RealmManager()
+            )
+          )
+        )
+      }
+      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
       .background(Color(hue: 0.086, saturation: 0.141, brightness: 0.972))
       .onAppear {
         viewStore.send(.onAppear)
       }
+      .navigationTitle("My taks")
     }
   }
 }
