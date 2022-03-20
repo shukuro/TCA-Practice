@@ -28,8 +28,9 @@ struct TasksEnvironment {
 let tasksReducer = Reducer<Tasks, TasksAction, TasksEnvironment> { state, action, environment in
   switch action {
   case .onAppear:
-    state.tasks = environment.realmManager.tasks
-    return .none
+    return environment.realmManager.getTasks()
+      .receive(on: environment.mainQueue)
+      .catchToEffect(TasksAction.fetchTaskResponse)
     
   case .onTap(id: let id, completed: let completed):
     return environment.realmManager.updateTask(id: id, completed: !completed)
@@ -97,7 +98,9 @@ struct TasksView: View {
           }
         
       }
-      .sheet(isPresented: $showAddTaskView) {
+      .sheet(isPresented: $showAddTaskView, onDismiss: {
+        viewStore.send(.onAppear)
+      }) {
         AddTaskView(
           store: Store(
             initialState: AddTaskState(),
