@@ -17,7 +17,7 @@ class RealmManager: ObservableObject {
   
   init() {
     openRealm()
-    getTasks()
+    loadTasks()
   }
   
   func openRealm() {
@@ -45,7 +45,7 @@ class RealmManager: ObservableObject {
           try localRealm.write {
             let newTask = Task(value: ["title": taskTitle, "completed": false])
             localRealm.add(newTask)
-            self.getTasks()
+            self.loadTasks()
             promise(.success(self.tasks))
 //            print("Added new task to Realm: \(newTask)")
           }
@@ -57,7 +57,7 @@ class RealmManager: ObservableObject {
     }
   }
   
-  func getTasks() {
+  private func loadTasks() {
     if let localRealm = localRealm {
       let allTasks = localRealm.objects(Task.self).sorted(byKeyPath: "completed")
       tasks = []
@@ -65,6 +65,20 @@ class RealmManager: ObservableObject {
         tasks.append(task)
       }
     }
+  }
+  
+  func getTasks() -> Future<[Task], RealmError> {
+    return Future { promise in
+      if let localRealm = self.localRealm {
+        let allTasks = localRealm.objects(Task.self).sorted(byKeyPath: "completed")
+        self.tasks = []
+        allTasks.forEach { task in
+          self.tasks.append(task)
+        }
+        promise(.success(self.tasks))
+      }
+    }
+    
   }
   
   func updateTask(id: ObjectId, completed: Bool) -> Future<[Task], RealmError> {
@@ -78,7 +92,7 @@ class RealmManager: ObservableObject {
           
           try localRealm.write {
             taskToUpdate[0].completed = completed
-            self.getTasks()
+            self.loadTasks()
             promise(.success(self.tasks))
 //            print("Updated task with id \(id)! Completed status: \(completed)")
           }
@@ -101,7 +115,7 @@ class RealmManager: ObservableObject {
           
           try localRealm.write {
             localRealm.delete(taskToDelete)
-            self.getTasks()
+            self.loadTasks()
             promise(.success(self.tasks))
 //            print("Deleted task with id \(id)")
           }
