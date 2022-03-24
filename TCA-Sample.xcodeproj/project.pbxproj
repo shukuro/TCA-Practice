@@ -19,6 +19,7 @@
 		A289D44C27D66026006F5AD1 /* UserClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D44627D66026006F5AD1 /* UserClient.swift */; };
 		A289D44D27D66026006F5AD1 /* TCASampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D44727D66026006F5AD1 /* TCASampleView.swift */; };
 		A289D44F27D660C5006F5AD1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289D44E27D660C5006F5AD1 /* User.swift */; };
+		A2A866A927ECCCC500EF5470 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A866A827ECCCC500EF5470 /* HeaderView.swift */; };
 		A2D31B2127D65CEE000CA792 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D31B2027D65CEE000CA792 /* TodoListView.swift */; };
 		A2D6865327B2D74200EB3F3E /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D6865227B2D74200EB3F3E /* TodoView.swift */; };
 		A2E0822927AEEEF200B0DCAC /* TCA_SampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E0822827AEEEF200B0DCAC /* TCA_SampleApp.swift */; };
@@ -49,6 +50,7 @@
 		A289D44627D66026006F5AD1 /* UserClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserClient.swift; sourceTree = "<group>"; };
 		A289D44727D66026006F5AD1 /* TCASampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCASampleView.swift; sourceTree = "<group>"; };
 		A289D44E27D660C5006F5AD1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A2A866A827ECCCC500EF5470 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		A2D31B2027D65CEE000CA792 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		A2D6865227B2D74200EB3F3E /* TodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
 		A2E0822527AEEEF200B0DCAC /* TCA-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCA-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +104,7 @@
 		A289D44027D66026006F5AD1 /* TCASample */ = {
 			isa = PBXGroup;
 			children = (
+				A2A866A827ECCCC500EF5470 /* HeaderView.swift */,
 				A289D44227D66026006F5AD1 /* CheckListView.swift */,
 				A289D44327D66026006F5AD1 /* CheckRowView.swift */,
 				A289D44127D66026006F5AD1 /* CheckDetailView.swift */,
@@ -273,6 +276,7 @@
 				A289D44A27D66026006F5AD1 /* CheckRowView.swift in Sources */,
 				A2FE635327DE4902006D02B1 /* RealmManager.swift in Sources */,
 				A2FE634F27DE478A006D02B1 /* Task.swift in Sources */,
+				A2A866A927ECCCC500EF5470 /* HeaderView.swift in Sources */,
 				A289D43C27D65FFE006F5AD1 /* Provider+CheckList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

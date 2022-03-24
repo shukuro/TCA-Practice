@@ -77,19 +77,23 @@ struct CheckListView: View {
     
     WithViewStore(self.store) { viewStore in
       ZStack(alignment: .bottomTrailing) {
-        List {
-          ForEachStore(
-            self.store.scope(state: \.checks, action: CheckListAction.check(index:action:)),
-            content: CheckRowView.init(store:)
+        VStack {
+          HeaderView(
+            store: Store(
+              initialState: HeaderState(),
+              reducer: headerReducer,
+              environment: HeaderEnvironment()
+            )
           )
-        }
-        .navigationTitle("CheckList")
-        .toolbar {
-          ToolbarItem(placement: .navigationBarTrailing) {
-            Button("Add") {
-               viewStore.send(.addButtonTapped)
-            }
+          
+          List {
+            ForEachStore(
+              self.store.scope(state: \.checks, action: CheckListAction.check(index:action:)),
+              content: CheckRowView.init(store:)
+            )
           }
+          .listStyle(.plain)
+          
         }
         
         Button(action: {
@@ -113,6 +117,15 @@ struct CheckListView: View {
       }
       .onAppear {
         viewStore.send(.onAppear)
+      }
+      .navigationTitle("CheckList")
+      .navigationBarTitleDisplayMode(.inline)
+      .toolbar {
+        ToolbarItem(placement: .navigationBarTrailing) {
+          Button("Add") {
+             viewStore.send(.addButtonTapped)
+          }
+        }
       }
     }
     
