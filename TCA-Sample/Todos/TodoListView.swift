@@ -52,22 +52,21 @@ struct TodoListView: View {
   let store: Store<AppState, AppAction>
   
   var body: some View {
-    NavigationView {
-      WithViewStore(self.store) { viewStore in
-        List {
-          ForEachStore(
-            self.store.scope(state: \.todos, action: AppAction.todo(index:action:)),
-            content: TodoView.init(store:))
-        }
-        .navigationTitle("Todos")
-        .toolbar {
-          ToolbarItem(placement: .navigationBarTrailing) {
-            Button("Add") {
-              viewStore.send(.addButtonTapped)
-            }
+    WithViewStore(self.store) { viewStore in
+      List {
+        ForEachStore(
+          self.store.scope(state: \.todos, action: AppAction.todo(index:action:)),
+          content: TodoView.init(store:))
+      }
+      .navigationTitle("Todos")
+      .toolbar {
+        ToolbarItem(placement: .navigationBarTrailing) {
+          Button("Add") {
+            viewStore.send(.addButtonTapped)
           }
         }
       }
+      .navigationBarTitleDisplayMode(.inline)
     }
   }
 }
