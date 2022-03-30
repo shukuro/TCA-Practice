@@ -9,12 +9,14 @@ import SwiftUI
 import ComposableArchitecture
 
 struct HeaderState: Equatable {
-  
+  var userName: String = ""
+  var userIconImage: String = "person.crop.circle"
 }
 
 enum HeaderAction {
   case onAppear
   case userIconTapped
+  case changeIcon
 }
 
 struct HeaderEnvironment {
@@ -28,6 +30,9 @@ let headerReducer = Reducer<HeaderState, HeaderAction, HeaderEnvironment> { stat
   case .userIconTapped:
     // TODO: Set User Icon
     return .none
+  case .changeIcon:
+    state.userIconImage = "star.fill"
+    return .none
   }
 }
 
@@ -35,12 +40,12 @@ struct HeaderView: View {
   let store: Store<HeaderState, HeaderAction>
   
   var body: some View {
-    WithViewStore(self.store) { ViewStore in
+    WithViewStore(self.store) { viewStore in
       HStack(spacing: 16) {
         Button(action: {
-          ViewStore.send(.userIconTapped)
+          viewStore.send(.userIconTapped)
         }) {
-          Image(systemName: "person.crop.circle")
+          Image(systemName: viewStore.userIconImage)
             .resizable()
             .frame(width: 32, height: 32)
             .foregroundColor(.black)
@@ -50,6 +55,12 @@ struct HeaderView: View {
           .font(.title2)
         
         Spacer()
+        
+        Button(action: {
+          viewStore.send(.changeIcon)
+        }) {
+          Text("Change")
+        }
       }
       .padding()
       .background(Color.cyan)

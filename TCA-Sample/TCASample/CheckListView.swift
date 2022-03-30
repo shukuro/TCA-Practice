@@ -12,6 +12,8 @@ import ComposableArchitecture
 struct CheckListState: Equatable {
   var checks: IdentifiedArrayOf<CheckState> = []
   var selectedCount = 0
+  
+  var header = HeaderState()
 }
 
 enum CheckListAction {
@@ -20,6 +22,8 @@ enum CheckListAction {
   case addButtonTapped
   case updateCountButton
   case fetchCheckResponse(Result<[Check], ProviderError>)
+  case starButtonTapped
+  case header(HeaderAction)
 }
 
 struct CheckListEnvironment {
@@ -66,8 +70,21 @@ let checkListReducer = Reducer<CheckListState, CheckListAction, CheckListEnviron
       
     case .fetchCheckResponse(.failure):
       return .none
+      
+    case .starButtonTapped:
+      state.header.userIconImage = "star"
+      return .none
+      
+    case .header:
+      return .none
     }
-  }
+  },
+  headerReducer
+    .pullback(
+      state: \CheckListState.header,
+      action: /CheckListAction.header,
+      environment: { _ in HeaderEnvironment() }
+    )
 )
 
 struct CheckListView: View {
@@ -80,7 +97,7 @@ struct CheckListView: View {
         VStack {
           HeaderView(
             store: Store(
-              initialState: HeaderState(),
+              initialState: viewStore.header,
               reducer: headerReducer,
               environment: HeaderEnvironment()
             )
@@ -97,10 +114,16 @@ struct CheckListView: View {
         }
         
         Button(action: {
-          // TODO: チェックを外す
+          
+          if viewStore.selectedCount < viewStore.checks.count {
+            // ダイアログ
+          } else {
+            // TODO: チェックを外す
+            viewStore.send(.starButtonTapped)
+          }
         }) {
           Group {
-            if viewStore.selectedCount > 0 {
+            if viewStore.selectedCount < viewStore.checks.count {
               Text("\(viewStore.selectedCount)")
             } else {
               Image(systemName: "star.fill")
@@ -139,7 +162,7 @@ struct CheckListView_Previews: PreviewProvider {
             initialState: CheckListState(),
             reducer: checkListReducer,
             environment: CheckListEnvironment(
-              checkListClient: .mock(),
+              checkListClient: .mockPreview(),
               mainQueue: .main,
               uuid: UUID.init
             )
