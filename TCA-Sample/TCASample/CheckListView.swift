@@ -83,7 +83,10 @@ let checkListReducer = Reducer<CheckListState, CheckListAction, CheckListEnviron
     .pullback(
       state: \CheckListState.header,
       action: /CheckListAction.header,
-      environment: { _ in HeaderEnvironment() }
+      environment: { _ in HeaderEnvironment(
+        userClient: .live,
+        mainQueue: .main
+      ) }
     )
 )
 
@@ -96,11 +99,12 @@ struct CheckListView: View {
       ZStack(alignment: .bottomTrailing) {
         VStack {
           HeaderView(
-            store: Store(
-              initialState: viewStore.header,
-              reducer: headerReducer,
-              environment: HeaderEnvironment()
-            )
+//            store: Store(
+//              initialState: viewStore.header,
+//              reducer: headerReducer,
+//              environment: HeaderEnvironment()
+//            )
+            store: self.store.scope(state: \.header, action: CheckListAction.header)
           )
           
           List {

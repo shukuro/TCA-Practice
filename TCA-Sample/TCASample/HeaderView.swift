@@ -17,10 +17,12 @@ enum HeaderAction {
   case onAppear
   case userIconTapped
   case changeIcon
+  case fetchUserResponse(Result<User, ProviderError>)
 }
 
 struct HeaderEnvironment {
-  
+  var userClient: UserClient
+  var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
 let headerReducer = Reducer<HeaderState, HeaderAction, HeaderEnvironment> { state, action, environment in
@@ -29,9 +31,18 @@ let headerReducer = Reducer<HeaderState, HeaderAction, HeaderEnvironment> { stat
     return .none
   case .userIconTapped:
     // TODO: Set User Icon
-    return .none
+    
+    // 動作確認用
+    return environment.userClient.fetch()
+      .receive(on: environment.mainQueue)
+      .catchToEffect(HeaderAction.fetchUserResponse)
   case .changeIcon:
     state.userIconImage = "star.fill"
+    return .none
+  case .fetchUserResponse(.success(let response)):
+    state.userName = response.name
+    return .none
+  case .fetchUserResponse(.failure):
     return .none
   }
 }
@@ -51,7 +62,7 @@ struct HeaderView: View {
             .foregroundColor(.black)
         }
         
-        Text("User Name")
+        Text(viewStore.userName)
           .font(.title2)
         
         Spacer()
@@ -74,7 +85,10 @@ struct HeaderView_Previews: PreviewProvider {
       store: Store(
         initialState: HeaderState(),
         reducer: headerReducer,
-        environment: HeaderEnvironment()
+        environment: HeaderEnvironment(
+          userClient: .mockPreview(),
+          mainQueue: .main
+        )
       )
     )
   }
