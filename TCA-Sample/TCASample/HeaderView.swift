@@ -17,6 +17,7 @@ enum HeaderAction {
   case onAppear
   case userIconTapped
   case changeIcon
+  case showModal
   case fetchUserResponse(Result<User, ProviderError>)
 }
 
@@ -36,6 +37,8 @@ let headerReducer = Reducer<HeaderState, HeaderAction, HeaderEnvironment> { stat
     return environment.userClient.fetch()
       .receive(on: environment.mainQueue)
       .catchToEffect(HeaderAction.fetchUserResponse)
+  case .showModal:
+    return .none
   case .changeIcon:
     state.userIconImage = "star.fill"
     return .none
@@ -66,6 +69,12 @@ struct HeaderView: View {
           .font(.title2)
         
         Spacer()
+        
+        Button(action: {
+          viewStore.send(.showModal)
+        }) {
+          Text("Show")
+        }
         
         Button(action: {
           viewStore.send(.changeIcon)

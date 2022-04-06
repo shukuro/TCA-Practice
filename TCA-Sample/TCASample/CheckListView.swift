@@ -12,6 +12,7 @@ import ComposableArchitecture
 struct CheckListState: Equatable {
   var checks: IdentifiedArrayOf<CheckState> = []
   var selectedCount = 0
+  var isShowModal = false
   
   var header = HeaderState()
 }
@@ -75,7 +76,12 @@ let checkListReducer = Reducer<CheckListState, CheckListAction, CheckListEnviron
       state.header.userIconImage = "star"
       return .none
       
-    case .header:
+    case .header(let action):
+      switch action {
+      case .showModal:
+        state.isShowModal.toggle()
+      default: break
+      }
       return .none
     }
   },
@@ -96,49 +102,53 @@ struct CheckListView: View {
   var body: some View {
     
     WithViewStore(self.store) { viewStore in
-      ZStack(alignment: .bottomTrailing) {
-        VStack {
-          HeaderView(
-//            store: Store(
-//              initialState: viewStore.header,
-//              reducer: headerReducer,
-//              environment: HeaderEnvironment()
-//            )
-            store: self.store.scope(state: \.header, action: CheckListAction.header)
-          )
-          
-          List {
-            ForEachStore(
-              self.store.scope(state: \.checks, action: CheckListAction.check(index:action:)),
-              content: CheckRowView.init(store:)
+      ZStack {
+        ZStack(alignment: .bottomTrailing) {
+          VStack {
+            HeaderView(
+              store: self.store.scope(state: \.header, action: CheckListAction.header)
             )
+            
+            List {
+              ForEachStore(
+                self.store.scope(state: \.checks, action: CheckListAction.check(index:action:)),
+                content: CheckRowView.init(store:)
+              )
+            }
+            .listStyle(.plain)
+            
           }
-          .listStyle(.plain)
           
+          Button(action: {
+            
+            if viewStore.selectedCount < viewStore.checks.count {
+              // ダイアログ
+            } else {
+              // TODO: チェックを外す
+              viewStore.send(.starButtonTapped)
+            }
+          }) {
+            Group {
+              if viewStore.selectedCount < viewStore.checks.count {
+                Text("\(viewStore.selectedCount)")
+              } else {
+                Image(systemName: "star.fill")
+              }
+            }
+            .foregroundColor(.black)
+            .font(.system(size: 20))
+            .frame(width: 55, height: 55)
+            .background(Color.yellow)
+            .clipShape(Circle())
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 16))
+          }
         }
         
-        Button(action: {
-          
-          if viewStore.selectedCount < viewStore.checks.count {
-            // ダイアログ
-          } else {
-            // TODO: チェックを外す
-            viewStore.send(.starButtonTapped)
-          }
-        }) {
-          Group {
-            if viewStore.selectedCount < viewStore.checks.count {
-              Text("\(viewStore.selectedCount)")
-            } else {
-              Image(systemName: "star.fill")
-            }
-          }
-          .foregroundColor(.black)
-          .font(.system(size: 20))
-          .frame(width: 55, height: 55)
-          .background(Color.yellow)
-          .clipShape(Circle())
-          .padding(EdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 16))
+        if viewStore.isShowModal {
+          Text("Modal")
+            .font(.system(size: 20))
+            .frame(width: 300, height: 300)
+            .background(Color.cyan)
         }
         
       }
