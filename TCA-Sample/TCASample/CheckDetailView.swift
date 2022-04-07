@@ -10,6 +10,7 @@ import ComposableArchitecture
 
 struct DetailState: Equatable {
   var check: CheckState
+  var isPresented = true
 }
 
 enum DetailAction {
@@ -35,12 +36,16 @@ let detailReducer = Reducer<DetailState, DetailAction, DetailEnvironment> { stat
     return .none
   case .saveButtonTapped:
     // TODO: 保存処理
+    
+    state.isPresented = false
     return .none
   }
 }
 
 struct CheckDetailView: View {
   let store: Store<DetailState, DetailAction>
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+  
   var body: some View {
     WithViewStore(self.store) { viewStore in
       VStack {
@@ -82,6 +87,11 @@ struct CheckDetailView: View {
           UITextView.appearance().backgroundColor = nil
         }
         
+      }
+      .onChange(of: viewStore.isPresented) { value in
+        if !value {
+          presentationMode.wrappedValue.dismiss()
+        }
       }
       .onAppear {
         viewStore.send(.onAppear)
