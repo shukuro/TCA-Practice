@@ -10,6 +10,7 @@ import Combine
 import ComposableArchitecture
 
 struct CheckListState: Equatable {
+  var alert: AlertState<CheckListAction>?
   var checks: IdentifiedArrayOf<CheckState> = []
   var selectedCount = 0
   var isShowModal = false
@@ -17,7 +18,7 @@ struct CheckListState: Equatable {
   var header = HeaderState()
 }
 
-enum CheckListAction {
+enum CheckListAction: Equatable {
   case onAppear
   case check(index: UUID, action: CheckRowAction)
   case addButtonTapped
@@ -25,6 +26,9 @@ enum CheckListAction {
   case fetchCheckResponse(Result<[Check], ProviderError>)
   case starButtonTapped
   case header(HeaderAction)
+  case showAlert
+  case add
+  case alertDismissed
 }
 
 struct CheckListEnvironment {
@@ -83,6 +87,20 @@ let checkListReducer = Reducer<CheckListState, CheckListAction, CheckListEnviron
       default: break
       }
       return .none
+      
+    case .showAlert:
+      state.alert = .init(
+        title: .init("追加しますか？"),
+        primaryButton: .cancel(.init("いいえ")),
+        secondaryButton: .default(.init("追加"), action: .send(.add))
+      )
+      return .none
+      
+    case .add:
+      return .none
+      
+    case .alertDismissed:
+      return .none
     }
   },
   headerReducer
@@ -123,6 +141,8 @@ struct CheckListView: View {
             
             if viewStore.selectedCount < viewStore.checks.count {
               // ダイアログ
+              viewStore.send(.showAlert)
+              
             } else {
               // TODO: チェックを外す
               viewStore.send(.starButtonTapped)
@@ -130,7 +150,7 @@ struct CheckListView: View {
           }) {
             Group {
               if viewStore.selectedCount < viewStore.checks.count {
-                Text("\(viewStore.selectedCount)")
+                Text(viewStore.selectedCount == 0 ? "+" : "\(viewStore.selectedCount)")
               } else {
                 Image(systemName: "star.fill")
               }
@@ -165,7 +185,10 @@ struct CheckListView: View {
         }
       }
     }
-    
+    .alert(
+      self.store.scope(state: \.alert),
+      dismiss: .alertDismissed
+    )
   }
 }
 

@@ -21,7 +21,7 @@ struct Check: Codable, Equatable, Identifiable {
   var memo: String
 }
 
-enum CheckRowAction {
+enum CheckRowAction: Equatable {
   case checkboxTapped
 }
 

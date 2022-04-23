@@ -13,7 +13,7 @@ struct HeaderState: Equatable {
   var userIconImage: String = "person.crop.circle"
 }
 
-enum HeaderAction {
+enum HeaderAction: Equatable {
   case onAppear
   case userIconTapped
   case changeIcon
