@@ -9,15 +9,19 @@ import SwiftUI
 import ComposableArchitecture
 
 struct DetailState: Equatable {
+  var confirmationDialog: ConfirmationDialogState<DetailAction>?
   var check: CheckState
   var isPresented = true
 }
 
-enum DetailAction {
+enum DetailAction: Equatable {
+  case confirmationDialogDismissed
   case onAppear
   case titleTextFieldChanged(String)
   case memoTextChanged(String)
   case saveButtonTapped
+  case typeButtonTapped
+  case setType(String)
 }
 
 struct DetailEnvironment {
@@ -26,6 +30,9 @@ struct DetailEnvironment {
 
 let detailReducer = Reducer<DetailState, DetailAction, DetailEnvironment> { state, action, environment in
   switch action {
+  case .confirmationDialogDismissed:
+    state.confirmationDialog = nil
+    return .none
   case .onAppear:
     return .none
   case .titleTextFieldChanged(let name):
@@ -38,6 +45,23 @@ let detailReducer = Reducer<DetailState, DetailAction, DetailEnvironment> { stat
     // TODO: 保存処理
     
     state.isPresented = false
+    return .none
+
+  case .typeButtonTapped:
+    state.confirmationDialog = .init(
+      title: .init("タイプ"),
+      buttons: [
+        .cancel(.init("キャンセル")),
+        .default(.init("リマインダー"), action: .send(.setType("リマインダー"))),
+        .default(.init("Task"), action: .send(.setType("Task"))),
+        .default(.init("買い物"), action: .send(.setType("買い物")))
+      ]
+    )
+
+    return .none
+
+  case .setType(let type):
+    // TODO: タイプ設定
     return .none
   }
 }
@@ -86,6 +110,10 @@ struct CheckDetailView: View {
         .onDisappear() {
           UITextView.appearance().backgroundColor = nil
         }
+
+        Button("Type") {
+           viewStore.send(.typeButtonTapped)
+        }
         
       }
       .onChange(of: viewStore.isPresented) { value in
@@ -109,6 +137,9 @@ struct CheckDetailView: View {
         }
       }
     }
+    .confirmationDialog(self.store.scope(state: \.confirmationDialog),
+                        dismiss: .confirmationDialogDismissed
+    )
   }
 }
 
