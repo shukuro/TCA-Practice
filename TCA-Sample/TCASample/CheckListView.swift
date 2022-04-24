@@ -169,6 +169,7 @@ struct CheckListView: View {
             .font(.system(size: 20))
             .frame(width: 300, height: 300)
             .background(Color.cyan)
+            .cornerRadius(20)
         }
         
       }

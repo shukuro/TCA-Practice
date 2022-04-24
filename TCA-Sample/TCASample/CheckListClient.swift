@@ -37,7 +37,7 @@ extension CheckListClient {
 
   static func mockPreview(
     fetch: @escaping () -> Effect<[Check], ProviderError> = {
-      .init(value: [Check(id: 0, name: "mock data", memo: "mockmock")])
+      .init(value: [Check(id: 0, name: "mock data", memo: "mockmock", type: .reminder)])
     }
   ) -> Self {
     Self(

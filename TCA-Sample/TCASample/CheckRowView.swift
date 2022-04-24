@@ -19,6 +19,13 @@ struct Check: Codable, Equatable, Identifiable {
   var id: Int
   var name: String
   var memo: String
+  var type: CheckType
+
+  enum CheckType: String, CodingKey, Codable {
+    case reminder = "reminder"
+    case task = "task"
+    case buy = "buy"
+  }
 }
 
 enum CheckRowAction: Equatable {
@@ -95,7 +102,7 @@ struct CheckRowView_Previews: PreviewProvider {
           CheckState(
             id: UUID(),
             isChecked: false,
-            check: Check(id: 0, name: "name", memo: "memo")
+            check: Check(id: 0, name: "name", memo: "memo", type: .reminder)
           ),
         reducer: checkRowReducer,
         environment: CheckRowEnvironment()

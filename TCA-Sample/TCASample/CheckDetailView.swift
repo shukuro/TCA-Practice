@@ -21,7 +21,7 @@ enum DetailAction: Equatable {
   case memoTextChanged(String)
   case saveButtonTapped
   case typeButtonTapped
-  case setType(String)
+  case setType(Check.CheckType)
 }
 
 struct DetailEnvironment {
@@ -52,9 +52,9 @@ let detailReducer = Reducer<DetailState, DetailAction, DetailEnvironment> { stat
       title: .init("タイプ"),
       buttons: [
         .cancel(.init("キャンセル")),
-        .default(.init("リマインダー"), action: .send(.setType("リマインダー"))),
-        .default(.init("Task"), action: .send(.setType("Task"))),
-        .default(.init("買い物"), action: .send(.setType("買い物")))
+        .default(.init("リマインダー"), action: .send(.setType(.reminder))),
+        .default(.init("Task"), action: .send(.setType(.task))),
+        .default(.init("買い物"), action: .send(.setType(.buy)))
       ]
     )
 
@@ -62,6 +62,7 @@ let detailReducer = Reducer<DetailState, DetailAction, DetailEnvironment> { stat
 
   case .setType(let type):
     // TODO: タイプ設定
+    state.check.check.type = type
     return .none
   }
 }
@@ -72,7 +73,7 @@ struct CheckDetailView: View {
   
   var body: some View {
     WithViewStore(self.store) { viewStore in
-      VStack {
+      VStack(spacing: 0) {
         TextField(
           "Title",
           text: viewStore.binding(
@@ -81,7 +82,7 @@ struct CheckDetailView: View {
         )
         .frame(height: 50)
         .padding(.horizontal, 15)
-        .background(Color.white)
+        .background(Color.orange)
         
         ZStack(alignment: .topLeading) {
           if viewStore.check.check.memo.isEmpty {
@@ -103,6 +104,7 @@ struct CheckDetailView: View {
           .lineLimit(nil)
           .padding(.horizontal, 10)
         }
+        .frame(height: 200)
         .background(Color.yellow)
         .onAppear() {
           UITextView.appearance().backgroundColor = .clear
@@ -111,9 +113,26 @@ struct CheckDetailView: View {
           UITextView.appearance().backgroundColor = nil
         }
 
-        Button("Type") {
-           viewStore.send(.typeButtonTapped)
+        Button(action: {
+          viewStore.send(.typeButtonTapped)
+        }) {
+          HStack {
+            Text("Type")
+
+            Spacer()
+
+            Text(viewStore.check.check.type.rawValue)
+          }
+          .foregroundColor(.black)
+          .padding(.horizontal, 15)
+          .frame(height: 40)
+          .frame(maxWidth: .infinity)
+          .background(Color.green)
+
         }
+
+
+        Spacer()
         
       }
       .onChange(of: viewStore.isPresented) { value in
@@ -148,7 +167,11 @@ struct CheckDetailView_Previews: PreviewProvider {
     CheckDetailView(
       store: Store(
         initialState: DetailState(
-          check: CheckState(id: UUID(), isChecked: false, check: Check(id: 0, name: "name", memo: "memo"))
+          check: CheckState(
+            id: UUID(),
+            isChecked: false,
+            check: Check(id: 0, name: "name", memo: "memo", type: .reminder)
+          )
         ),
         reducer: detailReducer,
         environment: DetailEnvironment()
